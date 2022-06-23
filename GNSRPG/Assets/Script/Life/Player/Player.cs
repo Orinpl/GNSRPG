@@ -11,9 +11,19 @@ namespace Player
 {
     public partial class Player:LifeBase
     {
-        private void Update()
+        public float Speed;
+
+
+        protected override void Start()
         {
-            Move();            
+            base.Start();
+        }
+
+        protected void Update()
+        {
+            Speed = AttrCur.CurSpeed;
+            Move();
+            Jump();
         }
 
 

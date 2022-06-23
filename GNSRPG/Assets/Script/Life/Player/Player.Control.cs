@@ -7,6 +7,7 @@ using System.IO;
 using UnityEngine;
 using Main;
 using Life;
+using System.Collections;
 
 namespace Player
 {
@@ -33,6 +34,10 @@ namespace Player
 
             if (flag)
             {
+                if(Math.Abs(AttrCur.CurSpeed)<AttrCur.SpeedStart)
+                {
+                    AttrCur.CurSpeed = AttrCur.SpeedStart;
+                }
                 transform.localScale = new Vector3(dir, 1, 1);
                 RB2D.velocity = new Vector2(dir * AttrCur.CurSpeed, RB2D.velocity.y);
 
@@ -47,16 +52,61 @@ namespace Player
                 IsMove = false;
                 if (LifeState == LifeState.Move)
                 {
-                    Stop();
+                    ToStop();
                     LifeState = LifeState.Idle;
                 }
             }
         }
 
+        public void ToStop()
+        {
+            Stop();
+
+
+        }
+
         public void Stop()
         {
-            RB2D.velocity = new Vector2(0, RB2D.velocity.y);
+            //RB2D.velocity = new Vector2(0, RB2D.velocity.y);
+            AttrCur.CurSpeed = AttrCur.SpeedStart;
         }
+
+        public void Jump()
+        {
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                if(RemainJumpTimes>0)
+                {
+                    RB2D.velocity = new Vector2(RB2D.velocity.x, AttrCur.JumpSpeed);
+                    StartCoroutine(ReduceJumpTime());
+                }
+            }
+        }
+
+        IEnumerator ReduceJumpTime()
+        {
+
+            yield return new WaitUntil(() => !IsGround);
+            RemainJumpTimes--;
+
+        }
+
+
+        public void Attack()//普通攻击
+        {
+            if(Input.GetKeyDown(KeyCode.J))
+            {
+                if(CanATK&&LifeState!=LifeState.Freeze&&LifeState!=LifeState.Flying)
+                {
+                    LifeState = LifeState.Attack;
+                    WeaponATK.Attack(this);
+
+                }    
+            }
+
+        }
+
+
 
 
     }

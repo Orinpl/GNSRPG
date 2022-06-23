@@ -17,8 +17,9 @@ namespace Main
         public float SpeedMax;// 最大移动速度
         public float SpeedStart;// 起始移动速度
         public float SpeedA;// 移动加速度
-        public float JumpHeight;// 跳跃高度
-        public float JumpSpeed;// 跳跃速度-与跳跃高度挂钩
+        public float StopA;// 停止加速度
+        public float JumpSpeed;// 跳跃速度
+        public int JumpTimes;//跳跃次数
         public float Armor;// 护甲值
                            //public float Resistance(...);// 各种属性抗性值
 

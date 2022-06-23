@@ -19,5 +19,30 @@ namespace Bullet
         public float Duration;
         public List<LifeBase> HitList = new List<LifeBase>();
         public List<LifeBase> DamegeList = new List<LifeBase>();
+
+        public Vector2 StartPoint;
+        public Vector2 Direction;
+        public Vector2 Target;
+
+        public void Fly()
+        {
+
+
+
+        }
+
+        private void FixedUpdate()
+        {
+            
+        }
+
+
+        public void SetTarget(Vector2 dir)
+        {
+            Direction = dir;
+            Target = StartPoint + Direction.normalized * Range;
+            
+        }
+
     }
 }
