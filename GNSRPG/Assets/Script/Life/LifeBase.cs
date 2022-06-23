@@ -17,5 +17,15 @@ namespace Life
         public WeaponBase WeaponATK;//基础攻击武器
         public WeaponBase WeaponSpecial;//特殊武器
         public AIBase AI;
+
+        protected Rigidbody2D RB2D;
+        protected Collider2D CD2D;
+
+        public bool IsGround;
+        public bool IsMove;
+
+
+
+
     }
 }
