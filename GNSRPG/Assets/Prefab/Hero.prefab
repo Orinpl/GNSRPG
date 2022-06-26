@@ -488,6 +488,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 2223665575796527658}
     m_Modifications:
     - target: {fileID: 238026804241939758, guid: 52ce275fd9f900c4092386aacbbeeb4f, type: 3}
+      propertyPath: ClipSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 238026804241939758, guid: 52ce275fd9f900c4092386aacbbeeb4f, type: 3}
+      propertyPath: BulletLeft
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 238026804241939758, guid: 52ce275fd9f900c4092386aacbbeeb4f, type: 3}
       propertyPath: BulletPoint
       value: 
       objectReference: {fileID: 3922305368573414005}

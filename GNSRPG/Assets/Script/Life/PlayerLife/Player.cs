@@ -7,7 +7,7 @@ using Main;
 using Life;
 using UnityEngine;
 
-namespace Player
+namespace PlayerLife
 {
     public partial class Player:LifeBase
     {
@@ -20,11 +20,18 @@ namespace Player
 
         float RushTimeCounter;
 
+        public int hp;
+        public int ps;
+
+
         protected override void Start()
         {
             base.Start();
             RushNumCounter = RushNum;
             RushCost = Temp.RushCost;
+
+            Temp.AttrTest.HP = hp;
+            Temp.AttrTest.PS = ps;
         }
 
         protected override void Update()

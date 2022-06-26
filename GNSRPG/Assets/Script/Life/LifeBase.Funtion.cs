@@ -6,7 +6,7 @@ using Buff;
 using Weapon;
 using AI;
 using Hurt;
-using Player;
+using PlayerLife;
 
 namespace Life
 {

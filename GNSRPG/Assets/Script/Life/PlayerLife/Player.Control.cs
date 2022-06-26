@@ -10,7 +10,7 @@ using Life;
 using Weapon;
 using System.Collections;
 
-namespace Player
+namespace PlayerLife
 {
     public partial class Player:LifeBase
     {

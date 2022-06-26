@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Main;
 using Hurt;
 using Life;
-using Player;
+using PlayerLife;
 using UnityEngine;
 using Bullet;
 using System.Collections;

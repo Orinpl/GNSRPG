@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Main;
 using Weapon;
 
-namespace Player
+namespace PlayerLife
 {
     public class Temp
     {
@@ -26,7 +26,7 @@ namespace Player
             AttrTest.CurSpeed = 0;
             AttrTest.StopA = 8;
             AttrTest.JumpSpeed = 8;
-            AttrTest.JumpTimes = 1;
+            AttrTest.JumpTimes = 2;
             AttrTest.PS = 100;
             AttrTest.PSRecover = 50;
             AttrTest.ATI = 0;
