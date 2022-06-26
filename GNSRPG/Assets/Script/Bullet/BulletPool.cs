@@ -11,9 +11,17 @@ namespace Bullet
 {
     public class BulletPool:Base
     {
-        public GameObject BulletObj;
+        private GameObject BulletObj;
+
         public List<GameObject> BulletToUse = new List<GameObject>();
         public List<GameObject> BulletUsing = new List<GameObject>();
+
+
+
+        protected override void Start()
+        {
+            base.Start();
+        }
         public GameObject GetBullet(Vector3 Postion)
         {
             if(BulletToUse.Count<=0)
@@ -38,6 +46,7 @@ namespace Bullet
             }
             BulletToUse.Add(bullet);
 
+            bullet.SetActive(false);
         }
 
         public void SetBullet(GameObject gameObject)

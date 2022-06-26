@@ -7,6 +7,7 @@ using System.IO;
 using UnityEngine;
 using Main;
 using Life;
+using Weapon;
 using System.Collections;
 
 namespace Player
@@ -16,15 +17,18 @@ namespace Player
         public void Move()
         {
             bool flag = true;
-            int dir = 1;
-            if(Input.GetKey(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.D)|| (Input.GetKeyUp(KeyCode.A) && Input.GetKey(KeyCode.D)))
             {
-                dir = 1;
-                flag = true;
+                Forward = new Vector3(1, 0, 0);
             }
-            else if(Input.GetKey(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.A) || (Input.GetKeyUp(KeyCode.D) && Input.GetKey(KeyCode.A)))
             {
-                dir = -1;
+                Forward = new Vector3(-1, 0, 0);
+            }
+
+            if ((Input.GetKey(KeyCode.D)|| Input.GetKey(KeyCode.A))
+                &&LifeState!=LifeState.Freeze&&LifeState!=LifeState.Rush)
+            {
                 flag = true;
             }
             else
@@ -38,8 +42,7 @@ namespace Player
                 {
                     AttrCur.CurSpeed = AttrCur.SpeedStart;
                 }
-                transform.localScale = new Vector3(dir, 1, 1);
-                RB2D.velocity = new Vector2(dir * AttrCur.CurSpeed, RB2D.velocity.y);
+                RB2D.velocity = new Vector2(Forward.x * AttrCur.CurSpeed, RB2D.velocity.y);
 
                 IsMove = true;
                 if (LifeState == LifeState.Idle)
@@ -60,6 +63,7 @@ namespace Player
 
         public void ToStop()
         {
+            IsToStop = true;
             Stop();
 
 
@@ -96,18 +100,68 @@ namespace Player
         {
             if(Input.GetKeyDown(KeyCode.J))
             {
-                if(CanATK&&LifeState!=LifeState.Freeze&&LifeState!=LifeState.Flying)
+                if(CanATK&&LifeState!=LifeState.Freeze)
                 {
-                    LifeState = LifeState.Attack;
-                    WeaponATK.Attack(this);
-
+                    if (WeaponATK.Attack(this))
+                    {
+                        LifeState = LifeState.Attack;
+                    }
                 }    
             }
 
         }
 
+        public void SAttack()//特殊攻击
+        {
+            if(Input.GetKeyDown(KeyCode.U))
+            {
+                if(CanSATK && LifeState != LifeState.Freeze)
+                {
+                    if (WeaponSpecial.Attack(this))
+                    {
+                        LifeState = LifeState.SpecialAttack;
+                    }
+                }
+            }
 
+        }
 
+        public override void NockBack()
+        {
+
+        }
+
+        //Vector2 rushTarget;
+        //Vector2 rushStart;
+        //float rushSpeed;
+        public bool IsRushing;
+        public Cost RushCost;
+        public void Rush()//冲刺
+        {
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                if(LifeState!=LifeState.Rush)
+                {
+                    LifeState = LifeState.Rush;
+                    RushTimeCounter = RushTime;
+                }
+                //rushTarget = transform.position + new Vector3(Forward.x * RushRange, 0, 0);
+                //rushStart = transform.position;
+                //rushSpeed = AttrCur.CurSpeed * RushPower;
+
+                if (AttrCur.CurPS >= RushCost.PS)
+                {
+                    PSCost(RushCost.PS);
+                    IsRushing = true;
+                }
+            }
+        }
+
+        IEnumerator ResetRush()
+        {
+            yield return new WaitUntil(() => IsGround);
+            RushNumCounter = RushNum;
+        }
 
     }
 }

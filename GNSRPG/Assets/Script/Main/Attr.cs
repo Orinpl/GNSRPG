@@ -34,6 +34,13 @@ namespace Main
         public int CurPS;// 当前精力值
         public float CurSpeed;// 当前速度
 
+        public int PSRecover;//精力回复速度
+        public float PSRI;//精力回复间隔
+        public int HPRecover;//生命回复速度
+        public float HPRI;//生命恢复间隔
+
+
+
         public Attr()
         {
             HP = 0;
@@ -41,11 +48,16 @@ namespace Main
             ATK = 0;
             Crit = 0;
             CritHit = 0;
+            PSRI = 1;
+            HPRI = 1;
+        }
 
+        public void Init()
+        {
+            CurHP = HP;
+            CurPS = PS;
 
 
         }
-
-
     }
 }

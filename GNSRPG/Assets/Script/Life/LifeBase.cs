@@ -23,7 +23,8 @@ namespace Life
         //public GameObject WeaponPoint;
         //Vector3 WeaponPosition;
 
-
+        public Vector3 Forward;//用来设置朝向
+        
 
         public AIBase AI;
 
@@ -32,7 +33,7 @@ namespace Life
 
         public bool IsGround;
         public bool IsMove;
-        public bool IsToStop { get => !IsMove; }
+        public bool IsToStop;
 
         public LayerMask Ground;
         public GameObject Foot;
@@ -42,8 +43,12 @@ namespace Life
 
         public bool IsATKing;
         public bool CanATK;
+        public bool CanSATK;
         public float ATKCD;//攻击CD
         public float SATKCD;//特殊攻击CD
+        public float PSRCD;//体力恢复CD
+        public float HPRCD;//生命恢复CD
+
 
     }
 }

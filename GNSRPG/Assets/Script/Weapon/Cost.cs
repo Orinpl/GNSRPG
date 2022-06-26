@@ -8,8 +8,12 @@ namespace Weapon
 {
     public class Cost
     {
-        int PS;
-        int BulletNum;
-
+        public int PS;
+        public int BulletNum;
+        public Cost()
+        {
+            PS = 0;
+            BulletNum = 0;
+        }
     }
 }
