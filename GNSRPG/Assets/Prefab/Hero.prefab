@@ -179,6 +179,9 @@ MonoBehaviour:
   TargetType: 1
   BuffManager: {fileID: 0}
   LifeState: 0
+  RepelPow: 3
+  RepelSpeed: 3
+  RepelTime: 0.1
   WATK: {fileID: 1402131380677365769}
   WSATK: {fileID: 2902008140181436530}
   WeaponATK: {fileID: 0}

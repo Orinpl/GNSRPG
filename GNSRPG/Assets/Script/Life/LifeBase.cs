@@ -18,6 +18,12 @@ namespace Life
         public LifeState LifeState;
 
 
+        public LifePool LifePool;
+
+        public float RepelPow;//被击退系数
+        public float RepelSpeed;//被击退速度
+        public float RepelTime;//被击退时间
+
         public GameObject WATK;
         public GameObject WSATK;
         public WeaponBase WeaponATK;//基础攻击武器

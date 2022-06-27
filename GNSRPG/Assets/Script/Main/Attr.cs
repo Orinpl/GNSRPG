@@ -25,6 +25,8 @@ namespace Main
                            //public float Resistance(...);// 各种属性抗性值
 
         public float RepelTime;// 被击退时受控制的时间
+        public float RepelSpeed;
+        public float RepelPow;
         public Vector2 RepelFrom;
         public float InvincibleTime;// 无敌帧时间
         //public float RepelSpeed;//被击退的速度(取1倍移速）

@@ -18,6 +18,9 @@ namespace Weapon
     {
         public LifeBase Owner;
 
+
+
+
         public WeaponType WeaponType;
 
         protected Cost Cost;
@@ -57,6 +60,7 @@ namespace Weapon
             IsCanFire = false;
             RotationOri = transform.rotation;
             tempCounter = ATKAnim;
+            bulletCounter = BulletRecoverCD;
         }
 
         private void Update()
@@ -87,6 +91,10 @@ namespace Weapon
                 }
 
             }
+
+            
+
+
 
         }
 

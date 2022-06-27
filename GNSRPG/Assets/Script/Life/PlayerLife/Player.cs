@@ -19,6 +19,11 @@ namespace PlayerLife
         public float RushPower;//冲刺速度倍率（相较于移动速度）
         public float RushTime;//冲刺时间
 
+
+        public float BulletRecoverCD;
+        public float bulletCounter;
+        public int BulletRecoverNum;
+
         float RushTimeCounter;
 
         public int hp;
@@ -96,6 +101,16 @@ namespace PlayerLife
                 }
 
 
+            }
+
+            if (bulletCounter > 0)
+            {
+                bulletCounter -= Time.deltaTime;
+            }
+            else
+            {
+                WeaponSpecial.AddBullet(BulletRecoverNum);
+                bulletCounter = BulletRecoverCD;
             }
 
         }

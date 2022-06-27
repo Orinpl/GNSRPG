@@ -49,6 +49,9 @@ MonoBehaviour:
   Name: 
   Icon: 
   BaseM: {fileID: 0}
+  Owner: {fileID: 0}
+  BulletRecoverCD: 5
+  BulletRecoverNum: 1
   WeaponType: 1
   ATKRange: 20
   ClipSize: 5

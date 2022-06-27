@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5806419653967088799
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5806419653967088798}
+  - component: {fileID: 5806419653967088784}
+  - component: {fileID: 5806419653967088785}
+  m_Layer: 8
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5806419653967088798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5806419653967088799}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5806419653967088784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5806419653967088799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8ac4031e93f4048a15f8e682053928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  Icon: 
+  BaseM: {fileID: 0}
+  Owner: {fileID: 0}
+  BulletRecoverCD: 9999
+  BulletRecoverNum: 10
+  WeaponType: 1
+  ATKRange: 5
+  ClipSize: 0
+  BulletLeft: 999
+  BulletPoint: {fileID: 0}
+  Bullet: {fileID: 0}
+  BulletPool: {fileID: 0}
+  BulletBase: {fileID: 0}
+  BulletToFire: {fileID: 0}
+  Angle: 5
+  TargetPoint: {x: 0, y: 0, z: 0, w: 0}
+  RotationOri: {x: 0, y: 0, z: 0, w: 0}
+  ATKAnim: 0
+  IsWaving: 0
+  IsShooting: 0
+  IsCanFire: 0
+--- !u!114 &5806419653967088785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5806419653967088799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91c0abe5d8b00fa43b5cfab86e8bb741, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  Icon: 
+  BaseM: {fileID: 0}
+  BulletToUse: []
+  BulletUsing: []

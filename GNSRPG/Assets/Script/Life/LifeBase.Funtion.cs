@@ -48,6 +48,11 @@ namespace Life
             AttrCur = AttrOri;
             AttrCur.Init();
             RemainJumpTimes = AttrCur.JumpTimes;
+            AttrCur.RepelPow = RepelPow;
+            AttrCur.RepelSpeed = RepelSpeed;
+            AttrCur.RepelTime = RepelTime;
+
+
         }
 
 
@@ -153,7 +158,7 @@ namespace Life
             {
                 if (FreezeCounter > 0)
                 {
-                    RB2D.velocity = AttrCur.RepelFrom.normalized * AttrCur.SpeedMax * 2;
+                    RB2D.velocity = AttrCur.RepelFrom.normalized * AttrCur.RepelPow*AttrCur.RepelSpeed;
                     FreezeCounter -= Time.deltaTime;
                     ATKCD = AttrCur.ATI;
                     SATKCD = AttrCur.SATI;

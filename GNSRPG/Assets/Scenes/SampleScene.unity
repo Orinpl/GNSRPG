@@ -177,7 +177,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -356,6 +356,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4424114859795598925, guid: fee382094d32d0048aa325a98bcaa7e7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fee382094d32d0048aa325a98bcaa7e7, type: 3}
 --- !u!1 &552337828
@@ -486,7 +490,15 @@ PrefabInstance:
       value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 7830645596827764903, guid: 48b7513e39bcd784eb5ee6efe81faf43, type: 3}
+      propertyPath: BulletRecoverCD
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7830645596827764903, guid: 48b7513e39bcd784eb5ee6efe81faf43, type: 3}
       propertyPath: RemainJumpTimes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7830645596827764903, guid: 48b7513e39bcd784eb5ee6efe81faf43, type: 3}
+      propertyPath: BulletRecoverNum
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7830645596827764907, guid: 48b7513e39bcd784eb5ee6efe81faf43, type: 3}
@@ -499,6 +511,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8284085007652099971, guid: 48b7513e39bcd784eb5ee6efe81faf43, type: 3}
       propertyPath: Angle
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8284085007652099971, guid: 48b7513e39bcd784eb5ee6efe81faf43, type: 3}
+      propertyPath: ClipSize
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8284085007652099971, guid: 48b7513e39bcd784eb5ee6efe81faf43, type: 3}
@@ -576,6 +592,10 @@ PrefabInstance:
     - target: {fileID: 4424114859795598925, guid: fee382094d32d0048aa325a98bcaa7e7, type: 3}
       propertyPath: m_Name
       value: Slime (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424114859795598925, guid: fee382094d32d0048aa325a98bcaa7e7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fee382094d32d0048aa325a98bcaa7e7, type: 3}
@@ -5757,6 +5777,10 @@ PrefabInstance:
     - target: {fileID: 4424114859795598925, guid: fee382094d32d0048aa325a98bcaa7e7, type: 3}
       propertyPath: m_Name
       value: Slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424114859795598925, guid: fee382094d32d0048aa325a98bcaa7e7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fee382094d32d0048aa325a98bcaa7e7, type: 3}
