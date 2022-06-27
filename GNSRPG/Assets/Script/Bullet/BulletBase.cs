@@ -16,6 +16,7 @@ namespace Bullet
     public class BulletBase : Base 
     {
         public BulletType BulletType;
+        public TargetType TargetType;
         public List<HurtManager> HurtList;
         public float Speed;
         public float Range;
@@ -42,6 +43,8 @@ namespace Bullet
 
         public Ray2D Ray2D;
 
+        public bool IsReflect;//只能反射一次
+
         public void Fire()
         {
             IsFire = true;
@@ -62,6 +65,7 @@ namespace Bullet
             HitList = new List<LifeBase>();
             DamegeList = new List<LifeBase>();
             HurtList = new List<HurtManager>();
+            IsReflect = false;
         }
 
 
@@ -133,10 +137,32 @@ namespace Bullet
             {
                 if(r2.collider!=null)
                 {
-                    if (r2.collider.CompareTag("Enemy"))//|| r2.collider.CompareTag("Player")
+                    if (r2.collider.CompareTag("Enemy") || r2.collider.CompareTag("Player"))//
                     {
-                        HitList.Add(r2.collider.gameObject.GetComponent<LifeBase>());
+                        LifeBase lb = r2.collider.gameObject.GetComponent<LifeBase>();
+                        if (lb.TargetType!=TargetType)
+                        {
+                            HitList.Add(r2.collider.gameObject.GetComponent<LifeBase>());
+                        }
+                        
                     }
+                    else if(r2.collider.CompareTag("Bullet"))
+                    {
+                        BulletBase bb = r2.collider.gameObject.GetComponent<BulletBase>();
+                        if (bb != null)
+                        {
+                            if (bb.TargetType != TargetType&&bb.BulletType==BulletType.SWORD&&!IsReflect)//可以砍回去
+                            {
+                                Vector2 dir = Vector2.Reflect(transform.right, bb.transform.right);
+                                TargetType = bb.TargetType;
+                                InitBullet(Owner, transform.position, dir);
+                            }
+                        }
+
+
+                    }
+
+
                 }
 
             }
@@ -151,18 +177,29 @@ namespace Bullet
                 GameObject go = collision.gameObject;
                 if (go.CompareTag("Enemy") || go.CompareTag("Player"))
                 {
-                    if (go.GetComponent<Player>() != null ||
-                        go.GetComponent<Enemy>() != null ||
-                        go.GetComponent<LifeBase>() != null)
+                    if (go.GetComponent<LifeBase>() != null)
                     {
-                        if (go != Owner.Owner.gameObject)
+                        if (go.GetComponent<LifeBase>().TargetType != Owner.Owner.TargetType)
                         {
                             HitList.Add(go.GetComponent<LifeBase>());
                         }
                     }
 
-
                 }
+                else if(go.CompareTag("Bullet"))
+                {
+                    BulletBase bb = go.GetComponent<BulletBase>();
+                    if (bb!=null)
+                    {
+                        if (bb.TargetType!=TargetType)//可以砍回去
+                        {
+                            Vector2 dir = Vector2.Reflect(bb.transform.right, transform.right);
+                            bb.TargetType = TargetType;
+                            bb.InitBullet(bb.Owner, bb.transform.position, dir);
+                        }
+                    }
+                }
+
 
             }
         }
@@ -200,10 +237,11 @@ namespace Bullet
             IsFire = false;
 
             //若要对DamageList做什么在这里
+            TargetType = Owner.Owner.TargetType;
 
             DamegeList.Clear();
             HurtList.Clear();
-
+            IsReflect = false;
 
             Owner.BulletPool.ReUse(this.gameObject);
         }

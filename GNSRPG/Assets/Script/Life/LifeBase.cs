@@ -5,11 +5,13 @@ using Main;
 using Buff;
 using Weapon;
 using AI;
+using Bullet;
 
 namespace Life
 {
     public partial class LifeBase:Base
     {
+        public TargetType TargetType;
         public Attr AttrOri;
         public Attr AttrCur;
         public BuffManager BuffManager;

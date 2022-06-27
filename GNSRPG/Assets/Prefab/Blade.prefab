@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5115643443578311811}
   m_Layer: 7
   m_Name: Blade
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,6 +50,7 @@ MonoBehaviour:
   Icon: 
   BaseM: {fileID: 0}
   BulletType: 0
+  TargetType: 0
   Speed: 0
   Range: 0
   Duration: 0.1
@@ -66,6 +67,7 @@ MonoBehaviour:
   IsFly: 0
   IsDestroy: 0
   Owner: {fileID: 0}
+  IsReflect: 0
 --- !u!60 &5115643443578311811
 PolygonCollider2D:
   m_ObjectHideFlags: 0

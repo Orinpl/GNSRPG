@@ -176,6 +176,7 @@ MonoBehaviour:
   Name: 
   Icon: 
   BaseM: {fileID: 0}
+  TargetType: 1
   BuffManager: {fileID: 0}
   LifeState: 0
   WATK: {fileID: 1402131380677365769}
