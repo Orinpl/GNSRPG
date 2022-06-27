@@ -16,17 +16,13 @@ namespace Life
         protected override void Start()
         {
             base.Start();
-            Temp = new Temp();
-            AttrOri = Temp.AttrTest;
-            AttrCur = AttrOri;
-            AttrCur.Init();
             LifeState = LifeState.Idle;
+            InitTest();
 
             RB2D = GetComponent<Rigidbody2D>();
             CD2D = GetComponent<Collider2D>();
 
             Ground = LayerMask.GetMask("Ground");
-            RemainJumpTimes = AttrCur.JumpTimes;
             FootColl = Foot.GetComponent<Collider2D>();
 
             //Instantiate(WATK, this.transform.position, Quaternion.identity);
@@ -44,6 +40,18 @@ namespace Life
 
             IsToStop = false;
         }
+
+        public virtual void InitTest()
+        {
+            Temp = new Temp();
+            AttrOri = Temp.AttrTest;
+            AttrCur = AttrOri;
+            AttrCur.Init();
+            RemainJumpTimes = AttrCur.JumpTimes;
+        }
+
+
+
 
         protected void FixedUpdate()
         {
@@ -123,12 +131,14 @@ namespace Life
 
             }
 
+            
+
         }
 
         protected virtual void Update()
         {
             transform.right = Forward;
-            if (PSRCD<0)
+            if (PSRCD<=0)
             {
                 PSRecover();
                 PSRCD = AttrCur.PSRI;
@@ -138,16 +148,41 @@ namespace Life
                 PSRCD -= Time.deltaTime;
 
             }
+
+            if (LifeState == LifeState.Freeze)
+            {
+                if (FreezeCounter > 0)
+                {
+                    RB2D.velocity = AttrCur.RepelFrom.normalized * AttrCur.SpeedMax * 2;
+                    FreezeCounter -= Time.deltaTime;
+                    ATKCD = AttrCur.ATI;
+                    SATKCD = AttrCur.SATI;
+                }
+                else
+                {
+                    LifeState = LifeState.Idle;
+                }
+
+            }
         }
 
-        public void GetHurt(List<HurtManager> hurtList)//结算伤害
+        public void GetHurt(List<HurtManager> hurtList,Vector2 from)//结算伤害
         {
+            AttrCur.CalculateDamage(hurtList);
+            NockBack(from);
 
         }
 
-        public virtual void NockBack()//被击退
+        public virtual void NockBack(Vector2 from)//被击退,from为子弹的方向
         {
+            if(LifeState!=LifeState.Invincible)
+            {
+                AttrCur.RepelFrom = from;
+                FreezeCounter = AttrCur.RepelTime;
+                LifeState = LifeState.Freeze;
 
+
+            }
 
 
 

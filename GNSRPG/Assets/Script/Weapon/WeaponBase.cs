@@ -16,7 +16,7 @@ namespace Weapon
     [System.Serializable]
     public class WeaponBase : Base 
     {
-        LifeBase Owner;
+        public LifeBase Owner;
 
         public WeaponType WeaponType;
 

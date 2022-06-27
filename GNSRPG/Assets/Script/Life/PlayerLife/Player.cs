@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Main;
 using Life;
 using UnityEngine;
+using System.Collections;
 
 namespace PlayerLife
 {
@@ -26,13 +27,21 @@ namespace PlayerLife
 
         protected override void Start()
         {
+            StartCoroutine(SetValue());
             base.Start();
             RushNumCounter = RushNum;
             RushCost = Temp.RushCost;
 
+        }
+
+        public IEnumerator SetValue()
+        {
+            yield return new WaitUntil(() => AttrCur != null);
+
             Temp.AttrTest.HP = hp;
             Temp.AttrTest.PS = ps;
         }
+
 
         protected override void Update()
         {

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2223665575796527658}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 7830645596827764902}
   - component: {fileID: 7830645596827764896}
   - component: {fileID: 7830645596827764903}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hero
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -184,6 +184,8 @@ MonoBehaviour:
   WeaponSpecial: {fileID: 0}
   Forward: {x: 0, y: 0, z: 0}
   AI: {fileID: 0}
+  RB2D: {fileID: 0}
+  CD2D: {fileID: 0}
   IsGround: 0
   IsMove: 0
   IsToStop: 0
@@ -199,12 +201,15 @@ MonoBehaviour:
   SATKCD: 0
   PSRCD: 0
   HPRCD: 0
+  FreezeCounter: 0
   IsRushing: 0
   Speed: 0
   PS: 0
   RushNum: 0
   RushPower: 4
   RushTime: 0.1
+  hp: 0
+  ps: 0
 --- !u!1 &7830645598815519957
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,7 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7830645598815519958}
   - component: {fileID: 7830645598815519959}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,6 +280,10 @@ PrefabInstance:
       value: Bullet
       objectReference: {fileID: 0}
     - target: {fileID: 3324734059427374898, guid: 8d64c1d92fd1e904b8e6a7053d0257db, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3324734059427374898, guid: 8d64c1d92fd1e904b8e6a7053d0257db, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -322,6 +331,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5710439950767643244, guid: 8d64c1d92fd1e904b8e6a7053d0257db, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d64c1d92fd1e904b8e6a7053d0257db, type: 3}
 --- !u!1 &3922305368573414005 stripped
@@ -349,9 +362,17 @@ PrefabInstance:
       propertyPath: BulletPoint
       value: 
       objectReference: {fileID: 6686784717127067672}
+    - target: {fileID: 1148879947835826272, guid: 0a30d32a71390fd4da33f90d6dd97c50, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2665563957523837118, guid: 0a30d32a71390fd4da33f90d6dd97c50, type: 3}
       propertyPath: m_Name
       value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 2665563957523837118, guid: 0a30d32a71390fd4da33f90d6dd97c50, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7156964986618296275, guid: 0a30d32a71390fd4da33f90d6dd97c50, type: 3}
       propertyPath: m_RootOrder
@@ -546,6 +567,14 @@ PrefabInstance:
     - target: {fileID: 6484442896315241183, guid: 52ce275fd9f900c4092386aacbbeeb4f, type: 3}
       propertyPath: m_Name
       value: Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 6484442896315241183, guid: 52ce275fd9f900c4092386aacbbeeb4f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989738613256283347, guid: 52ce275fd9f900c4092386aacbbeeb4f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52ce275fd9f900c4092386aacbbeeb4f, type: 3}

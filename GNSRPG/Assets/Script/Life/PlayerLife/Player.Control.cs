@@ -126,9 +126,9 @@ namespace PlayerLife
 
         }
 
-        public override void NockBack()
+        public override void NockBack(Vector2 from)
         {
-
+            base.NockBack(from);
         }
 
         //Vector2 rushTarget;

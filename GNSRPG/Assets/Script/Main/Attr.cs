@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Hurt;
+using UnityEngine;
 
 namespace Main
 {
@@ -13,7 +15,6 @@ namespace Main
         public int ATK;
         public float Crit;// 暴击率
         public float CritHit;//暴击伤害倍率
-        public float InvincibleTime;// 无敌帧时间
         public float SpeedMax;// 最大移动速度
         public float SpeedStart;// 起始移动速度
         public float SpeedA;// 移动加速度
@@ -24,6 +25,10 @@ namespace Main
                            //public float Resistance(...);// 各种属性抗性值
 
         public float RepelTime;// 被击退时受控制的时间
+        public Vector2 RepelFrom;
+        public float InvincibleTime;// 无敌帧时间
+        //public float RepelSpeed;//被击退的速度(取1倍移速）
+
         public float FallDown;// 倒地时间
         public int FallHit;// 倒地承受临界伤害值
         public float FallDur;// 计算承受伤害值持续时间
@@ -43,13 +48,17 @@ namespace Main
 
         public Attr()
         {
-            HP = 0;
-            PS = 0;
+            HP = 100;
+            PS = 100;
             ATK = 0;
             Crit = 0;
             CritHit = 0;
             PSRI = 1;
             HPRI = 1;
+
+            RepelTime = 0.5f;
+            InvincibleTime = 4;
+
         }
 
         public void Init()
@@ -59,5 +68,27 @@ namespace Main
 
 
         }
+
+        public void CalculateDamage(List<HurtManager> hurtList)
+        {
+            int hurt = 0;
+            foreach(HurtManager hM in hurtList)
+            {
+                switch(hM.HurtType)
+                {
+                    case HurtType.Cut:
+                        hurt = (int)(hM.ATK - Armor);
+                        CurHP -= hurt;
+                        break;
+                    case HurtType.Posion:
+                        //TODO:后面补充buff
+                        break;
+                }
+            }
+
+
+        }
+
+
     }
 }

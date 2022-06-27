@@ -28,8 +28,8 @@ namespace Life
 
         public AIBase AI;
 
-        protected Rigidbody2D RB2D;
-        protected Collider2D CD2D;
+        public Rigidbody2D RB2D;
+        public Collider2D CD2D;
 
         public bool IsGround;
         public bool IsMove;
@@ -49,6 +49,7 @@ namespace Life
         public float PSRCD;//体力恢复CD
         public float HPRCD;//生命恢复CD
 
+        public float FreezeCounter;//计算被控制的时间
 
     }
 }

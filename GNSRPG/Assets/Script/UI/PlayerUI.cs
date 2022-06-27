@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Main;
+using Life;
 using PlayerLife;
 using UnityEngine;
 using UnityEngine.UI;
@@ -52,54 +53,49 @@ namespace UI
             HPRect = HPBG.rectTransform;
             PSRect = PSBG.rectTransform;
 
-
-            Player = FindObjectOfType<Player>();
-            HPBarLength = (Player.AttrCur.HP / 100) * HPBarStandard;
-            PSBarLength = (Player.AttrCur.PS / 100) * HPBarStandard;
-
-            HPRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, HPBarLength);
-            PSRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, PSBarLength);
-
-
-            ClipSize = Player.WeaponSpecial.ClipSize;
-            UIPool = new UIPool(BulletCell.gameObject);
-            BulletList = new List<GameObject>();
+            StartCoroutine(InitUI());
+            
         }
 
         private void Update()
         {
-            HPCur = Player.AttrCur.CurHP/Player.AttrCur.HP;
-            PSCur = Player.AttrCur.CurPS/Player.AttrCur.PS;
-            CurBullet = Player.WeaponSpecial.BulletLeft;
-
-            HPFill.fillAmount = HPCur;
-            PSFill.fillAmount = PSCur;
-
-            if(BulletList.Count<CurBullet)
+            if (Player.AttrCur != null)
             {
-                StartCoroutine(AddBullet(CurBullet - BulletList.Count));
-            }
-            else if(BulletList.Count>CurBullet)
-            {
-                RemoveBullet(BulletList.Count - CurBullet);
+                HPCur = (float)Player.AttrCur.CurHP / Player.AttrCur.HP;
+                PSCur = (float)Player.AttrCur.CurPS / Player.AttrCur.PS;
+                CurBullet = Player.WeaponSpecial.BulletLeft;
+
+                HPFill.fillAmount = HPCur;
+                PSFill.fillAmount = PSCur;
             }
 
+
+            if (BulletList != null && UIPool != null)
+            {
+                if (BulletList.Count < CurBullet)
+                {
+                    AddBullet(CurBullet - BulletList.Count);
+                }
+                else if (BulletList.Count > CurBullet)
+                {
+                    RemoveBullet(BulletList.Count - CurBullet);
+                }
+            }
 
         }
 
-        public IEnumerator AddBullet(int n)
+        public void AddBullet(int n)
         {
 
             for (int i = 0; i < n; i++)
             {
-                yield return null;
                 BulletList.Add(UIPool.GetUI(Clip.transform));
 
 
             }
         }
 
-        public IEnumerator RemoveBullet(int n)
+        public void RemoveBullet(int n)
         {
             int count = 0;
             if (BulletList.Count > n)
@@ -113,13 +109,34 @@ namespace UI
 
             for (int i = BulletList.Count - 1; i >= count; i--)
             {
-                yield return null;
                 UIPool.ReUse(BulletList[i]);
                 BulletList.RemoveAt(i);
             }
 
 
         }
+
+        public IEnumerator InitUI()
+        {
+            yield return new WaitUntil(() => Player.AttrCur != null);
+
+            HPBarLength = (Player.AttrCur.HP / 100) * HPBarStandard;
+            PSBarLength = (Player.AttrCur.PS / 100) * HPBarStandard;
+
+
+            HPRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, HPBarLength);
+            PSRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, PSBarLength);
+
+            UIPool = GetComponent<UIPool>();
+            UIPool.SetElement(BulletCell.gameObject);
+            BulletList = new List<GameObject>();
+
+            yield return new WaitUntil(() => Player.WeaponSpecial != null);
+
+            ClipSize = Player.WeaponSpecial.ClipSize;
+
+        }
+
         
 
     }

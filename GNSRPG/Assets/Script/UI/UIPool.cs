@@ -14,9 +14,8 @@ namespace UI
         public List<GameObject> UIToUse;
         public List<GameObject> UIUsing;
 
-        public UIPool(GameObject element)
+        private void Start()
         {
-            UIElement = element;
             UIToUse = new List<GameObject>();
             UIUsing = new List<GameObject>();
 
@@ -30,11 +29,11 @@ namespace UI
                 ui = UIToUse[0];
                 UIUsing.Add(UIToUse[0]);
                 UIToUse.RemoveAt(0);
-                ui.transform.SetParent(transform);
+                ui.transform.SetParent(parent);
             }
             else
             {
-                ui = Instantiate(UIElement, transform);
+                ui = Instantiate(UIElement, parent);
 
             }
             ui.SetActive(true);
@@ -55,6 +54,10 @@ namespace UI
 
         }
 
+        public void SetElement(GameObject element)
+        {
+            UIElement = element;
+        }
 
 
     }

@@ -8,6 +8,8 @@ using Hurt;
 using UnityEngine;
 using Life;
 using Weapon;
+using PlayerLife;
+using EnemyLife;
 
 namespace Bullet
 {
@@ -85,6 +87,7 @@ namespace Bullet
                 {
                     if(Record >= Duration)
                     {
+                        HurtObj();
                         ToDestroy();
                     }
                 }
@@ -124,13 +127,13 @@ namespace Bullet
         public void GetObj(Vector2 lastPos,Vector2 thisPos)//获取命中目标
         {
             float dis = Vector2.Distance(lastPos, thisPos);
-            Ray2D = new Ray2D(thisPos,thisPos-lastPos);
+            Ray2D = new Ray2D(thisPos,lastPos - thisPos );
             RaycastHit2D[] hits = Physics2D.RaycastAll(Ray2D.origin, Ray2D.direction, dis);
             foreach(RaycastHit2D r2 in hits)
             {
                 if(r2.collider!=null)
                 {
-                    if (r2.collider.CompareTag("Enemy"))
+                    if (r2.collider.CompareTag("Enemy"))//|| r2.collider.CompareTag("Player")
                     {
                         HitList.Add(r2.collider.gameObject.GetComponent<LifeBase>());
                     }
@@ -141,17 +144,32 @@ namespace Bullet
 
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            if(IsFire&&!IsFly)
+            if (IsFire && !IsFly)
             {
-                if(collision.collider.CompareTag("Enemy"))
+                GameObject go = collision.gameObject;
+                if (go.CompareTag("Enemy") || go.CompareTag("Player"))
                 {
-                    HitList.Add(collision.collider.gameObject.GetComponent<LifeBase>());
+                    if (go.GetComponent<Player>() != null ||
+                        go.GetComponent<Enemy>() != null ||
+                        go.GetComponent<LifeBase>() != null)
+                    {
+                        if (go != Owner.Owner.gameObject)
+                        {
+                            HitList.Add(go.GetComponent<LifeBase>());
+                        }
+                    }
+
 
                 }
 
             }
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            
         }
 
 
@@ -162,7 +180,7 @@ namespace Bullet
             {
                 if(!DamegeList.Contains(HitList[i]))
                 {
-                    HitList[i].GetHurt(HurtList);
+                    HitList[i].GetHurt(HurtList,transform.right);
                     DamegeList.Add(HitList[i]);
                     HitList.RemoveAt(i);
 
@@ -190,6 +208,12 @@ namespace Bullet
             Owner.BulletPool.ReUse(this.gameObject);
         }
 
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(Ray2D.origin, Ray2D.origin+Ray2D.direction);
+        }
 
     }
 }

@@ -16,6 +16,8 @@ namespace PlayerLife
         public Cost BulletCost;
         public Cost RushCost;
 
+        public Attr Slime;
+
 
         public Temp()
         {
@@ -28,8 +30,21 @@ namespace PlayerLife
             AttrTest.JumpSpeed = 8;
             AttrTest.JumpTimes = 2;
             AttrTest.PS = 100;
+            AttrTest.HP = 100;
             AttrTest.PSRecover = 50;
             AttrTest.ATI = 0;
+
+            Slime = new Attr();
+            Slime.SpeedMax = 3;
+            Slime.SpeedStart = 2;
+            Slime.SpeedA = 1;
+            Slime.CurSpeed = 0;
+            Slime.PS = 100;
+            Slime.HP = 100;
+            Slime.PSRecover = 10;
+            Slime.ATI = 2;
+            Slime.SATI = 2;
+
 
 
 

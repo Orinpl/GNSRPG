@@ -15,6 +15,7 @@ namespace Life
         Attack,//攻击
         SpecialAttack,//特殊攻击
         Freeze,//不受控制的状态，如被击退、眩晕、倒地等
+        Invincible,// 无敌状态
         Flying,//在空中的状态
         Death,//死亡
     }
