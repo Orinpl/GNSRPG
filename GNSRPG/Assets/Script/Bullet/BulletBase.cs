@@ -103,7 +103,7 @@ namespace Bullet
 
         }
 
-        public void InitBullet(WeaponBase owner, Vector2 start, Vector2 dir)
+        public void InitBullet(WeaponBase owner, Vector2 start, Vector2 dir,List<HurtManager> hurtList)
         {
 
             
@@ -115,6 +115,8 @@ namespace Bullet
             Record = 0;
             LastPosition = new Vector2(transform.position.x, transform.position.y);
             //设置其他属性
+            HurtList = hurtList;
+
             SetTarget(dir);
             gameObject.SetActive(true);
         }
@@ -155,7 +157,7 @@ namespace Bullet
                             {
                                 Vector2 dir = Vector2.Reflect(transform.right, bb.transform.right);
                                 TargetType = bb.TargetType;
-                                InitBullet(Owner, transform.position, dir);
+                                InitBullet(Owner, transform.position, dir, HurtList);
                             }
                         }
 
@@ -195,7 +197,7 @@ namespace Bullet
                         {
                             Vector2 dir = Vector2.Reflect(bb.transform.right, transform.right);
                             bb.TargetType = TargetType;
-                            bb.InitBullet(bb.Owner, bb.transform.position, dir);
+                            bb.InitBullet(bb.Owner, bb.transform.position, dir,HurtList);
                         }
                     }
                 }

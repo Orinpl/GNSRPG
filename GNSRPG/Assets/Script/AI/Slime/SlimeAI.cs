@@ -18,7 +18,7 @@ namespace AI
             base.Attack();
             if(AIState==AIState.Attack)
             {
-                Unit.WeaponSpecial.Attack(Unit);
+                Unit.WeaponATK.Attack(Unit);
 
             }
 

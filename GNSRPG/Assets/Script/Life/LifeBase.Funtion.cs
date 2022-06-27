@@ -34,6 +34,10 @@ namespace Life
             WATK.SetActive(false);
             WSATK.SetActive(false);
 
+
+            WeaponATK.HurtList.Add(Temp.ATKD);
+            WeaponSpecial.HurtList.Add(Temp.SATKD);
+
             //WeaponPosition = WeaponPoint.transform.position;
             CanATK = true;
             Forward = new Vector3(1, 0, 0);
@@ -51,7 +55,6 @@ namespace Life
             AttrCur.RepelPow = RepelPow;
             AttrCur.RepelSpeed = RepelSpeed;
             AttrCur.RepelTime = RepelTime;
-
 
         }
 

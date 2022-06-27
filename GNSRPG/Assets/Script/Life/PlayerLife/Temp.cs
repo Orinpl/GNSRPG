@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Main;
 using Weapon;
+using Hurt;
 
 namespace PlayerLife
 {
@@ -15,6 +16,9 @@ namespace PlayerLife
         public Cost BladeCost;
         public Cost BulletCost;
         public Cost RushCost;
+
+        public HurtManager ATKD;
+        public HurtManager SATKD;
 
         public Attr Slime;
 
@@ -58,9 +62,13 @@ namespace PlayerLife
             RushCost = new Cost();
             RushCost.PS = 10;
 
+            ATKD = new HurtManager();
+            ATKD.ATK = 10;
+            ATKD.HurtType = HurtType.Cut;
 
-
-
+            SATKD = new HurtManager();
+            SATKD.ATK = ATKD.ATK * 4;
+            SATKD.HurtType = HurtType.Cut;
 
 
         }

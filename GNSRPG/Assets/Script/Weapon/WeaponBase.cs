@@ -51,6 +51,11 @@ namespace Weapon
 
         private Vector2 BulletDir;
 
+        private void Awake()
+        {
+            HurtList = new List<HurtManager>();
+        }
+
         protected override void Start()
         {
             base.Start();
@@ -60,7 +65,6 @@ namespace Weapon
             IsCanFire = false;
             RotationOri = transform.rotation;
             tempCounter = ATKAnim;
-            bulletCounter = BulletRecoverCD;
         }
 
         private void Update()
@@ -125,7 +129,7 @@ namespace Weapon
 
             BulletToFire = BulletPool.GetBullet(BulletPosition);
             BulletBase = BulletToFire.GetComponent<BulletBase>();
-            BulletBase.InitBullet(this, BulletPosition, BulletDir);
+            BulletBase.InitBullet(this, BulletPosition, BulletDir,HurtList);
             BulletBase.Fire();
             gameObject.SetActive(false);
         }

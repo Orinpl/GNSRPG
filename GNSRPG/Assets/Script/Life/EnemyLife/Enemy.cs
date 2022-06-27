@@ -29,6 +29,8 @@ namespace EnemyLife
             AttrCur.RepelPow = RepelPow;
             AttrCur.RepelSpeed = RepelSpeed;
             AttrCur.RepelTime = RepelTime;
+
+
         }
 
         public override void NockBack(Vector2 from)
